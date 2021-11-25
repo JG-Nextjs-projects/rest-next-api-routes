@@ -12,23 +12,54 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Prisma Commands
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+Initial migration:
+```bash
+npx prisma migrate dev --name init
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+To update the schema:
+```bash
+npx prisma generate
+```
 
-## Learn More
+After that run:
+```bash
+npx prisma migrate dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+To interact with the dabase:
+```bash
+npx prisma studio
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Using the REST API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+You can also access the REST API of the API server directly. It is running on the same host machine and port and can be accessed via the `/api` route (in this case that is `localhost:3000/api/`, so you can e.g. reach the API with [`localhost:3000/api/feed`](http://localhost:3000/api/feed)).
 
-## Deploy on Vercel
+### `GET`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/api/book/:id`: Fetch a single book by its `id`
+- `/api/feed`: Fetch all _published_ books
+- `/api/filterBooks?searchString={searchString}`: Filter books by `title` or `content`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### `POST`
+
+- `/api/post`: Create a new book
+  - Body:
+    - `title: String` (required): The title of the post
+    - `content: String` (optional): The content of the post
+    - `authorEmail: String` (required): The email of the user that creates the book
+- `/api/author`: Create a new author
+  - Body:
+    - `email: String` (required): The email address of the user
+    - `name: String` (optional): The name of the user
+
+### `PUT`
+
+- `/api/publish/:id`: Publish a book by its `id`
+
+### `DELETE`
+  
+- `/api/book/:id`: Delete a book by its `id`
