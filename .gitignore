@@ -12,6 +12,10 @@
 /.next/
 /out/
 
+# prisma
+/prisma/data
+/prisma/migrations
+
 # production
 /build
 
