@@ -1,6 +1,5 @@
-import type { GetServerSideProps, NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
+import type { GetServerSideProps, NextPage } from "next";
+import Head from "next/head";
 // import styles from '../styles/Home.module.css'
 
 const Home: NextPage = ({ feed }) => {
@@ -16,31 +15,20 @@ const Home: NextPage = ({ feed }) => {
         <h1 className="">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
-        {feed.map(item => <h2 key={item.id}>{item.title}</h2>)}
+        {feed.map((item) => (
+          <h2 key={item.id}>{item.title}</h2>
+        ))}
       </main>
-
-      <footer className="">
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className="">
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
     </div>
-  )
-}
+  );
+};
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch('http://localhost:3000/api/feed')
-  const feed = await res.json()
+  const res = await fetch("http://localhost:3000/api/feed");
+  const feed = await res.json();
   return {
     props: { feed },
-  }
-}
+  };
+};
 
-export default Home
+export default Home;
