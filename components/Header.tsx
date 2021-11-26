@@ -9,23 +9,29 @@ const Header = () => {
         </Link>
         <ul>
           <li>
-            <Link href="/">
+            <Link href="/favorites">
               <a>Favorites</a>
             </Link>
-            <Link href="/">
+          </li>
+          <li>
+            <Link href="/directory">
               <a>Author Direcotry</a>
             </Link>
-            <Link href="/">
+          </li>
+          <li>
+            <Link href="/admin/add-author">
               <a>Add Author</a>
             </Link>
-            <Link href="/">
+          </li>
+          <li>
+            <Link href="/admin/add-book">
               <a>Add Book</a>
             </Link>
           </li>
         </ul>
       </div>
     </nav>
-  )
-}
+  );
+};
 
 export default Header;
