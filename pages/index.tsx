@@ -4,7 +4,6 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 
 const Home: NextPage = ({ feed }) => {
-  console.log(feed);
   return (
     <div className={styles.container}>
       <Head>
